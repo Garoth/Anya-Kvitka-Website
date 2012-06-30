@@ -1,0 +1,39 @@
+.entry-style() {
+  float: left;
+  .standard-text();
+  line-height: 32px;
+  font-size: 14px;
+  margin: 0px @column-width / 4;
+  .inline-block();
+  letter-spacing: 2px;
+
+  &.right {
+    float: right;
+  }
+
+  &.nomargin {
+    margin: 0px;
+  }
+}
+
+.row-style(@borders) {
+  .entries {
+    .entry {
+      .entry-style();
+    }
+  }
+}
+
+.row-style(@borders) when (@borders = top) {
+  border-top: @main-border-style;
+}
+
+.row-style(@borders) when (@borders = bottom) {
+  border-bottom: @main-border-style;
+}
+
+.row-classes(@borders: top) {
+  .row {
+    .row-style(@borders);
+  }
+}

@@ -1,9 +1,6 @@
-@header-border-style: 1px solid @sad-yellow;
-
 .header-classes() {
   .header {
-    border-bottom: @header-border-style;
-    margin-bottom: @column-width / 2;
+    border-bottom: @main-border-style;
 
     .logo {
       background: url("../img/main_logo.png");
@@ -13,28 +10,6 @@
       margin: @column-width auto;
     }
 
-    .row {
-      border-top: @header-border-style;
-
-      .entries {
-        .entry {
-          float: left;
-          .standard-text();
-          line-height: 40px;
-          font-size: 14px;
-          margin: 0px @column-width / 4;
-          .inline-block();
-          letter-spacing: 2px;
-
-          &.right {
-            float: right;
-          }
-
-          &.nomargin {
-            margin: 0px;
-          }
-        }
-      }
-    }
+    .row-classes();
   }
 }
