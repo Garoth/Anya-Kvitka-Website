@@ -15,16 +15,24 @@
 
     .row {
       border-top: @header-border-style;
-      .entries {
-        float: right;
 
+      .entries {
         .entry {
+          float: left;
           .standard-text();
-          line-height: @column-width;
+          line-height: 40px;
           font-size: 14px;
           margin: 0px @column-width / 4;
           .inline-block();
           letter-spacing: 2px;
+
+          &.right {
+            float: right;
+          }
+
+          &.nomargin {
+            margin: 0px;
+          }
         }
       }
     }

@@ -1,0 +1,21 @@
+@reg-icon-path: "../img/social-icons/no-background/Glyph/";
+@hover-icon-path: "../img/social-icons/background/Glyph/";
+
+.social-style(@filename, @width: 40px, @height: 40px) {
+  .inline-block();
+  width: @width;
+  height: @height;
+  background: url("@{reg-icon-path}@{filename}");
+  .background-size(100%);
+
+  &:hover {
+    background: url("@{hover-icon-path}@{filename}");
+  }
+}
+
+.social-classes() {
+  a.social-twitter  { .social-style("Twitter.png"); }
+  a.social-facebook { .social-style("Facebook.png"); }
+  a.social-tumblr   { .social-style("Tumblr.png"); }
+  a.social-youtube  { .social-style("Youtube.png"); }
+}
