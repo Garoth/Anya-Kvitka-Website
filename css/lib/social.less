@@ -7,9 +7,13 @@
   height: @height;
   background: url("@{reg-icon-path}@{filename}");
   .background-size(100%);
+  background-repeat: no-repeat;
 
   &:hover {
     background: url("@{hover-icon-path}@{filename}");
+    .background-size(90%);
+    background-repeat: no-repeat;
+    background-position: center center;
   }
 }
 
@@ -18,5 +22,5 @@
   a.social-facebook { .social-style("Facebook.png"); }
   a.social-tumblr   { .social-style("Tumblr.png"); }
   a.social-youtube  { .social-style("Youtube.png"); }
-  a.social-rss      { .social-style("RSS.png"); }
+  a.social-rss      { .social-style("RSS.png"); display: none; }
 }

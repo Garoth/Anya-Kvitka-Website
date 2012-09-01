@@ -16,7 +16,10 @@
   }
 }
 
-.row-style(@borders) {
+.row-style() {
+  border-top: @main-border-style;
+  border-bottom: @main-border-style;
+
   .entries {
     .entry {
       .entry-style();
@@ -24,16 +27,8 @@
   }
 }
 
-.row-style(@borders) when (@borders = top) {
-  border-top: @main-border-style;
-}
-
-.row-style(@borders) when (@borders = bottom) {
-  border-bottom: @main-border-style;
-}
-
-.row-classes(@borders: top) {
+.row-classes() {
   .row {
-    .row-style(@borders);
+    .row-style();
   }
 }

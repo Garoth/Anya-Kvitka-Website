@@ -7,7 +7,6 @@
 
 .header-classes();
 .footer-classes();
-.slideshow-classes();
 .social-classes();
 
 /* Generic Classes */
@@ -20,4 +19,11 @@ body {
   background: @pale-gray;
   width: @column-width * 30;
   margin: 0px auto;
+}
+
+#main {
+  position: absolute;
+  display: none;
+  .row-classes();
+  .slideshow-classes();
 }
