@@ -29,6 +29,13 @@ Anya.Parts = function() {
     $(function() {
         me.Logo = $(".logo");
         me.Main = $("#main");
+        me.Pages = {
+            slideshow: $("#slideshow"),
+            about: $("#about")
+        };
+        me.PageLinks = {
+            about: $("#about-link")
+        };
     });
 
     return me;
@@ -36,16 +43,23 @@ Anya.Parts = function() {
 
 Anya.Load = function() {
     var me = {};
+    var currentPage = "slideshow";
 
     me.StartSite = function() {
         Anya.Parts.Logo.center();
         Anya.Parts.Main.center();
 
         Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed, function() {
-            setTimeout(function() {
-                Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed);
-            }, Anya.Parts.FadeSpeed);
+            Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
+                Anya.Parts.Logo.hide();
+            });
         });
+    };
+
+    me.Page = function(pageid) {
+        Anya.Parts.Pages[currentPage].fadeOut(Anya.Parts.FadeSpeed);
+        Anya.Parts.Pages[pageid].fadeIn(Anya.Parts.FadeSpeed);
+        currentPage = pageid;
     };
 
     return me;
@@ -56,6 +70,11 @@ Anya.Main = function() {
 
     $(function() {
         Anya.Load.StartSite();
+
+        Anya.Parts.PageLinks.about.click(function() {
+            console.log("Clicked on about");
+            Anya.Load.Page("about");
+        });
     });
 
     return me;
