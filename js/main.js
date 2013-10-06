@@ -81,6 +81,9 @@ Anya.Parts = function() {
   return me;
 }();
 
+/* Generic slideshow thing that switches between a bunch of
+ * jQuery objects. Runs on a timer to do so automatically.
+ */
 Anya.ScrollNav = function() {
   var me = {};
 
@@ -97,29 +100,29 @@ Anya.ScrollNav = function() {
     running = false;
   };
 
+  me.Next = function() {
+    if (elements.length < 2) {
+      return;
+    }
+
+    var oldElem = elements[currentElement][0];
+    currentElement = (currentElement + 1) % elements.length;
+    var newElem = elements[currentElement][0];
+
+    Anya.Load.GenericTransition(oldElem, newElem);
+
+    if (elements[currentElement][1] != null) {
+      elements[currentElement][1]();
+    }
+  }
+
   me.Start = function() {
-    Anya.Debug("Starting Auto ScrollNav");
-
-    intervalId = setTimeout(function() {
-      if (elements.length < 2) {
-        return;
-      }
-
-      var oldElem = elements[currentElement][0];
-      currentElement = (currentElement + 1) % elements.length;
-      var newelem = elements[currentElement][0];
-
-      Anya.Load.GenericTransition(oldElem, newElem);
-
-      if (elements[currentElement][1] != null) {
-        elements[currentElement][1]();
-      }
-    }, 2000);
+    intervalId = setInterval(function() {
+      me.Next();
+    }, 5000);
   };
 
   me.Stop = function() {
-    Anya.Debug("Stopping Auto ScrollNav");
-
     clearInterval(intervalId);
     intervalId = null;
   };

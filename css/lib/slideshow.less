@@ -30,18 +30,24 @@
     }
 
     #slideshow {
-      display: block;
+      display: relative;
 
       .image1 {
         background: url("../img/slides/1.jpg");
       }
       .image2 {
         background: url("../img/slides/2.jpg");
-        display: none;
       }
       .image3 {
         background: url("../img/slides/3.jpg");
-        display: none;
+      }
+
+      .image1, .image2, .image3 {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
       }
     }
 
