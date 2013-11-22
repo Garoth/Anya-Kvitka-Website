@@ -1,0 +1,277 @@
+/*****************************************************************************/
+/* Simple Variables                                                          */
+/*****************************************************************************/
+/* Colors - Main */
+/* Colors - Grays */
+/* Fonts */
+/* Colmuns */
+/* Misc */
+/* Responsive Design Shortcut Variables */
+/*****************************************************************************/
+/* BOOTSTRAP DERIVED Utility Mixins                                          */
+/*                                                                           */
+/* Copyright 2012 Twitter, Inc.                                              */
+/*                                                                           */
+/* Licensed under the Apache License, Version 2.0 (the "License");           */
+/* you may not use this work except in compliance with the License.          */
+/* You may obtain a copy of the License in the LICENSE file, or at:          */
+/*                                                                           */
+/*    http://www.apache.org/licenses/LICENSE-2.0                             */
+/*                                                                           */
+/* Unless required by applicable law or agreed to in writing, software       */
+/* distributed under the License is distributed on an "AS IS" BASIS,         */
+/* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  */
+/* See the License for the specific language governing permissions and       */
+/* limitations under the License.                                            */
+/*                                                                           */
+/* Modifications by Evernote.                                                */
+/*****************************************************************************/
+/*****************************************************************************/
+/* EVERNOTE Utility Mixins                                                   */
+/*****************************************************************************/
+/* A reset for our standard text/font */
+/* Select a custom font before our standard ones */
+/* IE7 compatible inline-block implementation. May need to be the last thing
+ * in the class definition.
+ *
+ * If this seems nuts, go read: http://www.evernote.com/shard/s20/sh/
+ * 823f17ee-ca19-4415-b71b-51e2e34c1809/6fd042bb8486e7671ad2c0b2d9f01bd2
+ * (Don't worry, it'll still seem nuts after) */
+/* IE7 inline-block (standalone) */
+/* Make something unselectable (i.e. text on clickable stuff)
+ *
+ * Note: this standard is still evolving, and we may need to change these.
+ */
+/* CSS3 Border shortcuts */
+.header .logo {
+  position: absolute;
+  background: url("../img/main_logo.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  height: 116px;
+  width: 200px;
+  display: none;
+}
+a.social-twitter {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 32px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/Twitter.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+a.social-twitter:hover {
+  background: url("../img/social-icons/background/Glyph/Twitter.png");
+  -webkit-background-size: 90%;
+  -moz-background-size: 90%;
+  -o-background-size: 90%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+a.social-facebook {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 32px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/Facebook.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+a.social-facebook:hover {
+  background: url("../img/social-icons/background/Glyph/Facebook.png");
+  -webkit-background-size: 90%;
+  -moz-background-size: 90%;
+  -o-background-size: 90%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+a.social-tumblr {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 32px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/Tumblr.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+a.social-tumblr:hover {
+  background: url("../img/social-icons/background/Glyph/Tumblr.png");
+  -webkit-background-size: 90%;
+  -moz-background-size: 90%;
+  -o-background-size: 90%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+a.social-youtube {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 32px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/Youtube.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+a.social-youtube:hover {
+  background: url("../img/social-icons/background/Glyph/Youtube.png");
+  -webkit-background-size: 90%;
+  -moz-background-size: 90%;
+  -o-background-size: 90%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+a.social-rss {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 32px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/RSS.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: none;
+}
+a.social-rss:hover {
+  background: url("../img/social-icons/background/Glyph/RSS.png");
+  -webkit-background-size: 90%;
+  -moz-background-size: 90%;
+  -o-background-size: 90%;
+  background-size: 90%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+/* Generic Classes */
+.clear {
+  clear: both;
+}
+/* End Generic Classes */
+body {
+  background: #eeeeec;
+  width: 960px;
+  margin: 0px auto;
+}
+a {
+  cursor: pointer;
+}
+#main {
+  position: absolute;
+  display: none;
+}
+#main .row {
+  border-top: 1px solid #d0c49c;
+  border-bottom: 1px solid #d0c49c;
+}
+#main .row .entries .entry {
+  float: left;
+  color: #525461;
+  line-height: 18px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+  text-justify: auto;
+  text-outline: none;
+  text-overflow: clip;
+  text-shadow: none;
+  text-transform: none;
+  text-wrap: normal;
+  line-height: 32px;
+  font-size: 14px;
+  margin: 0px 8px;
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  letter-spacing: 2px;
+}
+#main .row .entries .entry.right {
+  float: right;
+}
+#main .row .entries .entry.nomargin {
+  margin: 0px;
+}
+#main .slideshow {
+  position: relative;
+  width: 960px;
+  height: 640px;
+}
+#main .slideshow .page {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 960px;
+  height: 640px;
+  display: none;
+}
+#main .slideshow .page .image {
+  width: 960px;
+  height: 640px;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  margin: 0px auto;
+}
+#main .slideshow .page .left-image {
+  float: left;
+  height: 640px;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#main .slideshow #slideshow {
+  display: relative;
+}
+#main .slideshow #slideshow .image1 {
+  background: url("../img/slides/1.jpg");
+}
+#main .slideshow #slideshow .image2 {
+  background: url("../img/slides/2.jpg");
+}
+#main .slideshow #slideshow .image3 {
+  background: url("../img/slides/3.jpg");
+}
+#main .slideshow #slideshow .image1,
+#main .slideshow #slideshow .image2,
+#main .slideshow #slideshow .image3 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+#main .slideshow #about .left-image {
+  height: 640px;
+  width: 297px;
+  margin-right: 16px;
+  background: url("../img/travel-illustration.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
