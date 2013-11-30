@@ -11,6 +11,10 @@ var Anya = {
   Main: OrderingError
 };
 
+Anya.DEF = {
+  NoLoad: false
+};
+
 jQuery.fn.center = function () {
   this.css("position","absolute");
   this.css("top", Math.max(0,
@@ -45,6 +49,7 @@ Anya.Parts = function() {
       slideshow: $("#slideshow"),
       about: $("#about")
     };
+    me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
     me.PageLinks = {
       about: $("#about-link")
     };
@@ -90,13 +95,31 @@ Anya.ScrollNav = function() {
   var elements = [];
   var intervalId = null;
   var currentElement = 0;
+  var pageWidth = 960;
+  var pageHeight = 640;
 
   me.Add = function(element, callback) {
     elements.push([element, callback]);
+    element.css("position", "relative");
+    element.css("left", "0px");
+    element.css("width", pageWidth + "px");
+    element.css("height", pageHeight + "px");
+
+    var prevElem = elements[elements.length - 2];
+    var newLeft = 0;
+    if (prevElem == null) {
+      prevElem = element;
+      newLeft = 0;
+    } else {
+      prevElem = prevElem[0];
+      newLeft = parseInt(prevElem.css("left")) + pageWidth;
+    }
+    element.css("left", "" + newLeft + "px");
   };
 
   me.Clear = function() {
     elements = [];
+    currentElement = 0;
     running = false;
   };
 
@@ -108,8 +131,14 @@ Anya.ScrollNav = function() {
     var oldElem = elements[currentElement][0];
     currentElement = (currentElement + 1) % elements.length;
     var newElem = elements[currentElement][0];
+    var elem = null;
+    var newLeft = null;
 
-    Anya.Load.GenericTransition(oldElem, newElem);
+    for (var x = 0; x < elements.length; x++) {
+      newLeft = parseInt(elem.css("left")) - pageWidth;
+      elem = elements[x][0];
+      elem.css("left", newLeft + "px");
+    }
 
     if (elements[currentElement][1] != null) {
       elements[currentElement][1]();
@@ -137,6 +166,11 @@ Anya.Load = function() {
   me.StartSite = function() {
     Anya.Parts.Logo.center();
     Anya.Parts.Main.center();
+
+    if (Anya.DEF.NoLoad === true) {
+      Anya.Parts.Main.show();
+      return;
+    }
 
     Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed * 3, function() {
       Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
@@ -172,8 +206,17 @@ Anya.Main = function() {
       Anya.Load.Page("about");
     });
 
+    /* Show / hide shows list */
+    Anya.Parts.Pages.slideshow.showsList.hover(function() {
+      Anya.Parts.Pages.slideshow.showsList.removeClass("hidden");
+    }, function() {
+      Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
+    });
+
     Anya.Load.Page("slideshow");
   });
 
   return me;
 }();
+
+// vim: set ts=2 sw=2 : 

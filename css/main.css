@@ -247,7 +247,15 @@ a {
   background-repeat: no-repeat;
 }
 #main .slideshow #slideshow {
-  display: relative;
+  overflow: hidden;
+}
+#main .slideshow #slideshow .image1,
+#main .slideshow #slideshow .image2,
+#main .slideshow #slideshow .image3 {
+  position: relative;
+  height: 640px;
+  width: 960px;
+  -webkit-transition: all 0.4s ease-in-out;
 }
 #main .slideshow #slideshow .image1 {
   background: url("../img/slides/1.jpg");
@@ -258,14 +266,72 @@ a {
 #main .slideshow #slideshow .image3 {
   background: url("../img/slides/3.jpg");
 }
-#main .slideshow #slideshow .image1,
-#main .slideshow #slideshow .image2,
-#main .slideshow #slideshow .image3 {
+#main .slideshow #slideshow #shows-list {
   position: absolute;
   top: 0px;
   right: 0px;
-  bottom: 0px;
+  height: 608px;
+  width: 200px;
+  background-color: rgba(82, 84, 97, 0.6);
+  padding: 16px 32px;
+  color: #d5d4c0;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-transition: all 0.4s;
+}
+#main .slideshow #slideshow #shows-list .heading {
+  position: relative;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 32px;
+  color: #e26975;
+  font-weight: bold;
+  text-shadow: -1px 1px 0px rgba(0, 0, 0, 0.5);
+  transform: rotate(0deg);
   left: 0px;
+  top: 0px;
+  -webkit-transition: all 0.4s;
+}
+#main .slideshow #slideshow #shows-list.hidden {
+  right: -232px;
+}
+#main .slideshow #slideshow #shows-list.hidden .heading {
+  position: relative;
+  -webkit-transform: rotate(90deg);
+  left: -114px;
+  top: 100px;
+}
+#main .slideshow #slideshow #shows-list .show {
+  text-align: center;
+  margin: 0px 0px 16px 0px;
+}
+#main .slideshow #slideshow #shows-list .show .divider {
+  width: 100%;
+  height: 0px;
+  border-width: 1px;
+  border-style: solid;
+  border-top-color: #d5d4c0;
+  border-bottom-color: #525461;
+  margin: 0px auto 16px;
+  opacity: 0.8;
+}
+#main .slideshow #slideshow #shows-list .show.first .divider {
+  display: none;
+}
+#main .slideshow #slideshow #shows-list .show .title {
+  font-weight: bold;
+  color: #d0c49c;
+  text-decoration: none;
+}
+#main .slideshow #slideshow #shows-list .show .title:hover {
+  color: #e9e3d0;
+  text-decoration: none;
 }
 #main .slideshow #about .left-image {
   height: 640px;
