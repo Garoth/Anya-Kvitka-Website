@@ -343,3 +343,21 @@ a {
   background-repeat: no-repeat;
   background-position: center center;
 }
+#main .slideshow .text {
+  color: #525461;
+  line-height: 18px;
+  font-family: helvetica, arial, sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  text-align: left;
+  text-decoration: none;
+  text-indent: 0;
+  text-justify: auto;
+  text-outline: none;
+  text-overflow: clip;
+  text-shadow: none;
+  text-transform: none;
+  text-wrap: normal;
+}
