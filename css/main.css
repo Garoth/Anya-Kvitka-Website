@@ -69,10 +69,10 @@ a.social-twitter {
 }
 a.social-twitter:hover {
   background: url("../img/social-icons/background/Glyph/Twitter.png");
-  -webkit-background-size: 90%;
-  -moz-background-size: 90%;
-  -o-background-size: 90%;
-  background-size: 90%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -91,10 +91,10 @@ a.social-facebook {
 }
 a.social-facebook:hover {
   background: url("../img/social-icons/background/Glyph/Facebook.png");
-  -webkit-background-size: 90%;
-  -moz-background-size: 90%;
-  -o-background-size: 90%;
-  background-size: 90%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -113,10 +113,10 @@ a.social-tumblr {
 }
 a.social-tumblr:hover {
   background: url("../img/social-icons/background/Glyph/Tumblr.png");
-  -webkit-background-size: 90%;
-  -moz-background-size: 90%;
-  -o-background-size: 90%;
-  background-size: 90%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -135,10 +135,32 @@ a.social-youtube {
 }
 a.social-youtube:hover {
   background: url("../img/social-icons/background/Glyph/Youtube.png");
-  -webkit-background-size: 90%;
-  -moz-background-size: 90%;
-  -o-background-size: 90%;
-  background-size: 90%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+a.social-itunes {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  width: 100px;
+  height: 32px;
+  background: url("../img/social-icons/no-background/Glyph/iTunes.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+a.social-itunes:hover {
+  background: url("../img/social-icons/background/Glyph/iTunes.png");
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }
@@ -158,10 +180,10 @@ a.social-rss {
 }
 a.social-rss:hover {
   background: url("../img/social-icons/background/Glyph/RSS.png");
-  -webkit-background-size: 90%;
-  -moz-background-size: 90%;
-  -o-background-size: 90%;
-  background-size: 90%;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
   background-repeat: no-repeat;
   background-position: center center;
 }

@@ -2,25 +2,26 @@
 @hover-icon-path: "../img/social-icons/background/Glyph/";
 
 .social-style(@filename, @width: 32px, @height: 32px) {
-  .inline-block();
-  width: @width;
-  height: @height;
-  background: url("@{reg-icon-path}@{filename}");
-  .background-size(100%);
-  background-repeat: no-repeat;
-
-  &:hover {
-    background: url("@{hover-icon-path}@{filename}");
-    .background-size(90%);
+    .inline-block();
+    width: @width;
+    height: @height;
+    background: url("@{reg-icon-path}@{filename}");
+    .background-size(100%);
     background-repeat: no-repeat;
-    background-position: center center;
-  }
+
+    &:hover {
+        background: url("@{hover-icon-path}@{filename}");
+        .background-size(100%);
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
 }
 
 .social-classes() {
-  a.social-twitter  { .social-style("Twitter.png"); }
-  a.social-facebook { .social-style("Facebook.png"); }
-  a.social-tumblr   { .social-style("Tumblr.png"); }
-  a.social-youtube  { .social-style("Youtube.png"); }
-  a.social-rss      { .social-style("RSS.png"); display: none; }
+    a.social-twitter  { .social-style("Twitter.png"); }
+    a.social-facebook { .social-style("Facebook.png"); }
+    a.social-tumblr   { .social-style("Tumblr.png"); }
+    a.social-youtube  { .social-style("Youtube.png"); }
+    a.social-itunes   { .social-style("iTunes.png", 100px, 32px); }
+    a.social-rss      { .social-style("RSS.png"); display: none; }
 }
