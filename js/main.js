@@ -12,7 +12,7 @@ var Anya = {
 };
 
 Anya.DEF = {
-    NoLoad: true
+    NoLoad: false
 };
 
 jQuery.fn.center = function () {
