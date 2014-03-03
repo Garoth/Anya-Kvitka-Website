@@ -51,7 +51,8 @@ Anya.Parts = function() {
         };
         me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
         me.PageLinks = {
-            about: $("#about-link")
+            about: $("#about-link"),
+            home: $("#home-link")
         };
         me.ScrollNav = $("#scrollnav");
 
@@ -72,6 +73,7 @@ Anya.Parts = function() {
 
         me.Pages.slideshow.Unload = function() {
             Anya.ScrollNav.Stop();
+            Anya.ScrollNav.Clear();
             Anya.Debug("Unloaded slideshow page");
         };
 
@@ -198,6 +200,10 @@ Anya.Main = function() {
 
         Anya.Parts.PageLinks.about.click(function() {
             Anya.Load.Page("about");
+        });
+
+        Anya.Parts.PageLinks.home.click(function() {
+            Anya.Load.Page("slideshow");
         });
 
         /* Show / hide shows list */

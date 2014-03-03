@@ -218,6 +218,9 @@ a {
 #main .row .entries .entry.nomargin {
   margin: 0px;
 }
+#main .row .entries .entry:first-child {
+  margin: 0px;
+}
 #main .slideshow {
   position: relative;
   width: 960px;

@@ -1,34 +1,38 @@
 .entry-style() {
-  float: left;
-  .standard-text();
-  line-height: 32px;
-  font-size: 14px;
-  margin: 0px @column-width / 4;
-  .inline-block();
-  letter-spacing: 2px;
+    float: left;
+    .standard-text();
+    line-height: 32px;
+    font-size: 14px;
+    margin: 0px @column-width / 4;
+    .inline-block();
+    letter-spacing: 2px;
 
-  &.right {
-    float: right;
-  }
+    &.right {
+        float: right;
+    }
 
-  &.nomargin {
-    margin: 0px;
-  }
+    &.nomargin {
+        margin: 0px;
+    }
+
+    &:first-child {
+        margin: 0px;
+    }
 }
 
 .row-style() {
-  border-top: @main-border-style;
-  border-bottom: @main-border-style;
+    border-top: @main-border-style;
+    border-bottom: @main-border-style;
 
-  .entries {
-    .entry {
-      .entry-style();
+    .entries {
+        .entry {
+            .entry-style();
+        }
     }
-  }
 }
 
 .row-classes() {
-  .row {
-    .row-style();
-  }
+    .row {
+        .row-style();
+    }
 }
