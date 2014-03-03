@@ -1,222 +1,214 @@
 var OrderingError = function() {
-  console.log("DEV SCREWED UP LOADING ORDER! BEAT HIM IMMEDIATELY!");
+    console.log("DEV SCREWED UP LOADING ORDER! BEAT HIM IMMEDIATELY!");
 };
 
 var Anya = {
-  Debug: OrderingError,
-  Util: OrderingError,
-  Parts: OrderingError,
-  ScrollNav: OrderingError,
-  Load: OrderingError,
-  Main: OrderingError
+    Debug: OrderingError,
+    Util: OrderingError,
+    Parts: OrderingError,
+    ScrollNav: OrderingError,
+    Load: OrderingError,
+    Main: OrderingError
 };
 
 Anya.DEF = {
-  NoLoad: false
+    NoLoad: true
 };
 
 jQuery.fn.center = function () {
-  this.css("position","absolute");
-  this.css("top", Math.max(0,
-        (($(window).height() - this.outerHeight()) / 2) +
-        $(window).scrollTop()) + "px");
-  this.css("left", Math.max(0,
-        (($(window).width() - this.outerWidth()) / 2) +
-        $(window).scrollLeft()) + "px");
-  return this;
-}
+    this.css("position","absolute");
+    this.css("top", Math.max(0,
+                (($(window).height() - this.outerHeight()) / 2) +
+                $(window).scrollTop()) + "px");
+    this.css("left", Math.max(0,
+                (($(window).width() - this.outerWidth()) / 2) +
+                $(window).scrollLeft()) + "px");
+    return this;
+};
 
 Anya.Debug = function(message) {
-  console.log(message);
+    console.log(message);
 };
 
 Anya.Util = function() {
-  var me = {};
+    var me = {};
 
-  return me;
+    return me;
 }();
 
 Anya.Parts = function() {
-  var me = {};
+    var me = {};
 
-  me.FadeSpeed = 500;
+    me.FadeSpeed = 500;
 
-  $(function() {
-    /* List of javascript-interacting objects */
-    me.Logo = $(".logo");
-    me.Main = $("#main");
-    me.Pages = {
-      slideshow: $("#slideshow"),
-      about: $("#about")
-    };
-    me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
-    me.PageLinks = {
-      about: $("#about-link")
-    };
-    me.ScrollNav = $("#scrollnav");
+    $(function() {
+        /* List of javascript-interacting objects */
+        me.Logo = $(".logo");
+        me.Main = $("#main");
+        me.Pages = {
+            slideshow: $("#slideshow"),
+            about: $("#about")
+        };
+        me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
+        me.PageLinks = {
+            about: $("#about-link")
+        };
+        me.ScrollNav = $("#scrollnav");
 
-    /* Particular page abilities */
-    me.Pages.slideshow.Load = function() {
-      img1 = $(".image1", me.Pages.slideshow);
-      img2 = $(".image2", me.Pages.slideshow);
-      img3 = $(".image3", me.Pages.slideshow);
+        /* Particular page abilities */
+        me.Pages.slideshow.Load = function() {
+            img1 = $(".image1", me.Pages.slideshow);
+            img2 = $(".image2", me.Pages.slideshow);
+            img3 = $(".image3", me.Pages.slideshow);
 
-      Anya.ScrollNav.Add(img1);
-      Anya.ScrollNav.Add(img2);
-      Anya.ScrollNav.Add(img3);
-      Anya.ScrollNav.Start();
+            Anya.ScrollNav.Add(img1);
+            Anya.ScrollNav.Add(img2);
+            Anya.ScrollNav.Add(img3);
+            console.log("starting slideshow");
+            Anya.ScrollNav.Start();
 
-      Anya.Debug("Loaded slideshow page");
-    };
+            Anya.Debug("Loaded slideshow page");
+        };
 
-    me.Pages.slideshow.Unload = function() {
-      Anya.ScrollNav.Stop();
-      Anya.Debug("Unloaded slideshow page");
-    }
+        me.Pages.slideshow.Unload = function() {
+            Anya.ScrollNav.Stop();
+            Anya.Debug("Unloaded slideshow page");
+        };
 
-    me.Pages.about.Load = function() {
-      Anya.Debug("Loaded about page");
-    };
+        me.Pages.about.Load = function() {
+            Anya.Debug("Loaded about page");
+        };
 
-    me.Pages.about.Unload = function() {
-      Anya.Debug("Unloaded about page");
-    };
-  });
+        me.Pages.about.Unload = function() {
+            Anya.Debug("Unloaded about page");
+        };
+    });
 
-  return me;
+    return me;
 }();
 
 /* Generic slideshow thing that switches between a bunch of
  * jQuery objects. Runs on a timer to do so automatically.
  */
 Anya.ScrollNav = function() {
-  var me = {};
+    var me = {};
 
-  var elements = [];
-  var intervalId = null;
-  var currentElement = 0;
-  var pageWidth = 960;
-  var pageHeight = 640;
+    var elements = [];
+    var intervalId = null;
+    var currentElement = 0;
+    var pageWidth = 960;
+    var pageHeight = 640;
 
-  me.Add = function(element, callback) {
-    elements.push([element, callback]);
-    element.css("position", "relative");
-    element.css("left", "0px");
-    element.css("width", pageWidth + "px");
-    element.css("height", pageHeight + "px");
+    me.Add = function(element, callback) {
+        elements.push([element, callback]);
+        element.css("position", "absolute");
+        element.css("width", pageWidth + "px");
+        element.css("height", pageHeight + "px");
+        element.css("top", "0px");
 
-    var prevElem = elements[elements.length - 2];
-    var newLeft = 0;
-    if (prevElem == null) {
-      prevElem = element;
-      newLeft = 0;
-    } else {
-      prevElem = prevElem[0];
-      newLeft = parseInt(prevElem.css("left")) + pageWidth;
-    }
-    element.css("left", "" + newLeft + "px");
-  };
+        if (elements.length === 1) {
+            element.css('opacity', '1');
+        } else {
+            element.css('opacity', '0');
+        }
+    };
 
-  me.Clear = function() {
-    elements = [];
-    currentElement = 0;
-    running = false;
-  };
+    me.Clear = function() {
+        elements = [];
+        currentElement = 0;
+        running = false;
+    };
 
-  me.Next = function() {
-    if (elements.length < 2) {
-      return;
-    }
+    me.Next = function() {
+        if (elements.length < 2) {
+            return;
+        }
 
-    var oldElem = elements[currentElement][0];
-    currentElement = (currentElement + 1) % elements.length;
-    var newElem = elements[currentElement][0];
-    var elem = null;
-    var newLeft = null;
+        console.log('Running next slide');
 
-    for (var x = 0; x < elements.length; x++) {
-      newLeft = parseInt(elem.css("left")) - pageWidth;
-      elem = elements[x][0];
-      elem.css("left", newLeft + "px");
-    }
+        var oldElem = elements[currentElement][0];
+        currentElement = (currentElement + 1) % elements.length;
+        var newElem = elements[currentElement][0];
 
-    if (elements[currentElement][1] != null) {
-      elements[currentElement][1]();
-    }
-  }
+        oldElem.animate({
+            opacity: 0
+        }, 500);
 
-  me.Start = function() {
-    intervalId = setInterval(function() {
-      me.Next();
-    }, 5000);
-  };
+        newElem.animate({
+            opacity: 1
+        }, 500);
+    };
 
-  me.Stop = function() {
-    clearInterval(intervalId);
-    intervalId = null;
-  };
+    me.Start = function() {
+        intervalId = setInterval(function() {
+            me.Next();
+        }, 5000);
+    };
 
-  return me;
+    me.Stop = function() {
+        clearInterval(intervalId);
+        intervalId = null;
+    };
+
+    return me;
 }();
 
 Anya.Load = function() {
-  var me = {};
-  var currentPage = "slideshow";
+    var me = {};
+    var currentPage = "slideshow";
 
-  me.StartSite = function() {
-    Anya.Parts.Logo.center();
-    Anya.Parts.Main.center();
+    me.StartSite = function() {
+        Anya.Parts.Logo.center();
+        Anya.Parts.Main.center();
 
-    if (Anya.DEF.NoLoad === true) {
-      Anya.Parts.Main.show();
-      return;
-    }
+        if (Anya.DEF.NoLoad === true) {
+            Anya.Parts.Main.show();
+            return;
+        }
 
-    Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed * 3, function() {
-      Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
-        Anya.Parts.Logo.hide();
-      });
-    });
-  };
+        Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed * 3, function() {
+            Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
+                Anya.Parts.Logo.hide();
+            });
+        });
+    };
 
-  me.GenericTransition = function(oldElement, newElement) {
-    oldElement.fadeOut(Anya.Parts.FadeSpeed);
-    newElement.fadeIn(Anya.Parts.FadeSpeed);
-  };
+    me.GenericTransition = function(oldElement, newElement) {
+        oldElement.fadeOut(Anya.Parts.FadeSpeed);
+        newElement.fadeIn(Anya.Parts.FadeSpeed);
+    };
 
-  me.Page = function(pageid) {
-    var curPage = Anya.Parts.Pages[currentPage];
-    var newPage = Anya.Parts.Pages[pageid];
-    me.GenericTransition(curPage, newPage);
-    curPage.Unload();
-    newPage.Load();
-    currentPage = pageid;
-  };
+    me.Page = function(pageid) {
+        var curPage = Anya.Parts.Pages[currentPage];
+        var newPage = Anya.Parts.Pages[pageid];
+        me.GenericTransition(curPage, newPage);
+        curPage.Unload();
+        newPage.Load();
+        currentPage = pageid;
+    };
 
-  return me;
+    return me;
 }();
 
 Anya.Main = function() {
-  var me = {};
+    var me = {};
 
-  $(function() {
-    Anya.Load.StartSite();
+    $(function() {
+        Anya.Load.StartSite();
 
-    Anya.Parts.PageLinks.about.click(function() {
-      Anya.Load.Page("about");
+        Anya.Parts.PageLinks.about.click(function() {
+            Anya.Load.Page("about");
+        });
+
+        /* Show / hide shows list */
+        Anya.Parts.Pages.slideshow.showsList.hover(function() {
+            Anya.Parts.Pages.slideshow.showsList.removeClass("hidden");
+        }, function() {
+            Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
+        });
+
+        Anya.Load.Page("slideshow");
     });
 
-    /* Show / hide shows list */
-    Anya.Parts.Pages.slideshow.showsList.hover(function() {
-      Anya.Parts.Pages.slideshow.showsList.removeClass("hidden");
-    }, function() {
-      Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
-    });
-
-    Anya.Load.Page("slideshow");
-  });
-
-  return me;
+    return me;
 }();
-
-// vim: set ts=2 sw=2 : 

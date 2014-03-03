@@ -255,7 +255,6 @@ a {
   position: relative;
   height: 640px;
   width: 960px;
-  -webkit-transition: all 0.4s ease-in-out;
 }
 #main .slideshow #slideshow .image1 {
   background: url("../img/slides/1.jpg");
