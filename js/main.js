@@ -33,6 +33,10 @@ Anya.Debug = function(message) {
 Anya.Util = function() {
     var me = {};
 
+    me.isFirefox = function() {
+        return navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+    };
+
     return me;
 }();
 
@@ -49,7 +53,9 @@ Anya.Parts = function() {
             slideshow: $("#slideshow"),
             about: $("#about")
         };
+
         me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
+
         me.PageLinks = {
             about: $("#about-link"),
             home: $("#home-link")
@@ -206,12 +212,16 @@ Anya.Main = function() {
             Anya.Load.Page("slideshow");
         });
 
-        /* Show / hide shows list */
-        Anya.Parts.Pages.slideshow.showsList.hover(function() {
+        /* Show / hide shows list if CSS transitions are supported well */
+        if (Anya.Util.isFirefox() === true) {
             Anya.Parts.Pages.slideshow.showsList.removeClass("hidden");
-        }, function() {
-            Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
-        });
+        } else {
+            Anya.Parts.Pages.slideshow.showsList.hover(function() {
+                Anya.Parts.Pages.slideshow.showsList.removeClass("hidden");
+            }, function() {
+                Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
+            });
+        }
 
         Anya.Load.Page("slideshow");
     });

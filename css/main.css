@@ -269,13 +269,13 @@ a {
   width: 960px;
 }
 #main .slideshow #slideshow .image1 {
-  background: url("../img/slides/1.jpg");
+  background: url("../img/slides/1.jpg?v=1");
 }
 #main .slideshow #slideshow .image2 {
-  background: url("../img/slides/2.jpg");
+  background: url("../img/slides/2.jpg?v=1");
 }
 #main .slideshow #slideshow .image3 {
-  background: url("../img/slides/3.jpg");
+  background: url("../img/slides/3.jpg?v=1");
 }
 #main .slideshow #slideshow #shows-list {
   position: absolute;
