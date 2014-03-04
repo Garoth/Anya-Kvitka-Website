@@ -2,7 +2,7 @@
 
 @page-width: 960px;
 @page-height: 640px;
-@img-version: "1";
+@img-version: "2";
 
 .slideshow-classes() {
   .slideshow {
@@ -36,7 +36,7 @@
     #slideshow {
       overflow: hidden;
 
-      .image1, .image2, .image3 {
+      .image1, .image2, .image3, .image4 {
         position: relative;
         height: @page-height;
         width: @page-width;
@@ -50,6 +50,9 @@
       }
       .image3 {
         background: url("../img/slides/3.jpg?v=@{img-version}");
+      }
+      .image4 {
+        background: url("../img/slides/4.jpg?v=@{img-version}");
       }
 
       #shows-list {

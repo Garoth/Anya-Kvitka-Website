@@ -67,10 +67,12 @@ Anya.Parts = function() {
             img1 = $(".image1", me.Pages.slideshow);
             img2 = $(".image2", me.Pages.slideshow);
             img3 = $(".image3", me.Pages.slideshow);
+            img4 = $(".image4", me.Pages.slideshow);
 
             Anya.ScrollNav.Add(img1);
             Anya.ScrollNav.Add(img2);
             Anya.ScrollNav.Add(img3);
+            Anya.ScrollNav.Add(img4);
             console.log("starting slideshow");
             Anya.ScrollNav.Start();
 
@@ -150,7 +152,7 @@ Anya.ScrollNav = function() {
     me.Start = function() {
         intervalId = setInterval(function() {
             me.Next();
-        }, 5000);
+        }, 10000);
     };
 
     me.Stop = function() {

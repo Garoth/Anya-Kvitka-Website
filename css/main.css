@@ -263,19 +263,23 @@ a {
 }
 #main .slideshow #slideshow .image1,
 #main .slideshow #slideshow .image2,
-#main .slideshow #slideshow .image3 {
+#main .slideshow #slideshow .image3,
+#main .slideshow #slideshow .image4 {
   position: relative;
   height: 640px;
   width: 960px;
 }
 #main .slideshow #slideshow .image1 {
-  background: url("../img/slides/1.jpg?v=1");
+  background: url("../img/slides/1.jpg?v=2");
 }
 #main .slideshow #slideshow .image2 {
-  background: url("../img/slides/2.jpg?v=1");
+  background: url("../img/slides/2.jpg?v=2");
 }
 #main .slideshow #slideshow .image3 {
-  background: url("../img/slides/3.jpg?v=1");
+  background: url("../img/slides/3.jpg?v=2");
+}
+#main .slideshow #slideshow .image4 {
+  background: url("../img/slides/4.jpg?v=2");
 }
 #main .slideshow #slideshow #shows-list {
   position: absolute;
