@@ -10,7 +10,17 @@
         }
     }
 
-    .text {
+    .text-top {
         .standard-text();
+        margin-top: @column-width * 2;
+    }
+
+    .text-bottom {
+        .standard-text();
+        position: absolute;
+        right: 0px;
+        bottom: 0px;
+        text-align: right;
+        margin-bottom: @column-width * 2;
     }
 }

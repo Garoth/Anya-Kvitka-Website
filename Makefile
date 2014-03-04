@@ -1,6 +1,8 @@
 less:
 	lessc css/main.less > css/main.css
 
+css: less
+
 release: less
 	rm -Rf BUILD
 	mkdir -p BUILD
