@@ -12,6 +12,7 @@ var Anya = {
 };
 
 Anya.DEF = {
+    // FIXME SET TO FALSE
     NoLoad: false
 };
 
@@ -24,10 +25,6 @@ jQuery.fn.center = function () {
                 (($(window).width() - this.outerWidth()) / 2) +
                 $(window).scrollLeft()) + "px");
     return this;
-};
-
-Anya.Debug = function(message) {
-    console.log(message);
 };
 
 Anya.Util = function() {
@@ -51,46 +48,87 @@ Anya.Parts = function() {
         me.Main = $("#main");
         me.Pages = {
             slideshow: $("#slideshow"),
-            about: $("#about")
+            about: $("#about"),
+            music: $("#music")
         };
 
         me.Pages.slideshow.showsList = $("#shows-list", me.Pages.slideshow);
 
         me.PageLinks = {
+            slideshow: $("#slideshow-link"),
             about: $("#about-link"),
-            home: $("#home-link")
+            music: $("#music-link")
         };
         me.ScrollNav = $("#scrollnav");
 
         /* Particular page abilities */
         me.Pages.slideshow.Load = function() {
-            img1 = $(".image1", me.Pages.slideshow);
-            img2 = $(".image2", me.Pages.slideshow);
-            img3 = $(".image3", me.Pages.slideshow);
-            img4 = $(".image4", me.Pages.slideshow);
+            var img1 = $(".image1", me.Pages.slideshow);
+            var img2 = $(".image2", me.Pages.slideshow);
+            var img3 = $(".image3", me.Pages.slideshow);
+            var img4 = $(".image4", me.Pages.slideshow);
 
             Anya.ScrollNav.Add(img1);
             Anya.ScrollNav.Add(img2);
             Anya.ScrollNav.Add(img3);
             Anya.ScrollNav.Add(img4);
-            console.log("starting slideshow");
             Anya.ScrollNav.Start();
-
-            Anya.Debug("Loaded slideshow page");
         };
 
         me.Pages.slideshow.Unload = function() {
             Anya.ScrollNav.Stop();
             Anya.ScrollNav.Clear();
-            Anya.Debug("Unloaded slideshow page");
         };
 
         me.Pages.about.Load = function() {
-            Anya.Debug("Loaded about page");
         };
 
         me.Pages.about.Unload = function() {
-            Anya.Debug("Unloaded about page");
+        };
+
+        me.Pages.music.Load = function() {
+            var topLine = $(".top", me.Pages.music);
+            var botLine = $(".bottom", me.Pages.music);
+
+            // Transition on the divider lines
+            topLine.delay(Anya.Parts.FadeSpeed * 1.3).animate({
+                top: "0px"
+            }, 500);
+            botLine.delay(Anya.Parts.FadeSpeed * 1.3).animate({
+                bottom: "0px"
+            }, 500);
+
+            var showDetails = function(albumid) {
+                $('.details', me.Pages.music).each(function(i, detail) {
+                    $(detail).fadeOut(Anya.Parts.FadeSpeed / 2);
+                });
+
+                $('.album', me.Pages.music).each(function(i, album) {
+                    $(album).removeClass("active");
+                });
+
+                var details = $('.details.' + albumid, me.Pages.music);
+                details.fadeIn(Anya.Parts.FadeSpeed / 2);
+                var albumName = $('.album.' + albumid, me.Pages.music);
+                albumName.addClass("active");
+            };
+
+            $('.album', me.Pages.music).each(function(i, albumLink) {
+                $(albumLink).click(function() {
+                    showDetails(albumLink.classList[1]);
+                });
+            });
+
+            var firstAlbum = $('.details', me.Pages.music).first();
+            showDetails(firstAlbum[0].classList[1]);
+        };
+
+        me.Pages.music.Unload = function() {
+            var topLine = $(".top", me.Pages.music);
+            var botLine = $(".bottom", me.Pages.music);
+
+            topLine.delay(Anya.Parts.FadeSpeed).css('top', '');
+            botLine.delay(Anya.Parts.FadeSpeed).css('bottom', '');
         };
     });
 
@@ -134,8 +172,6 @@ Anya.ScrollNav = function() {
             return;
         }
 
-        console.log('Running next slide');
-
         var oldElem = elements[currentElement][0];
         currentElement = (currentElement + 1) % elements.length;
         var newElem = elements[currentElement][0];
@@ -165,22 +201,48 @@ Anya.ScrollNav = function() {
 
 Anya.Load = function() {
     var me = {};
-    var currentPage = "slideshow";
+    var currentPage = 'slideshow';
+
+    me.GetSearchPage = function() {
+        var uripage = URI(window.location).search(true).page;
+
+        if (uripage == null || typeof uripage !== 'string' ||
+                Object.keys(Anya.Parts.Pages).indexOf(uripage) === -1) {
+            return null;
+        } else {
+            return uripage;
+        }
+    };
+
+    me.PageByURI = function() {
+        if (me.GetSearchPage() == null) {
+            currentPage = Object.keys(Anya.Parts.Pages)[0];
+        } else {
+            currentPage = me.GetSearchPage();
+        }
+
+        Anya.Load.Page(currentPage);
+    };
 
     me.StartSite = function() {
         Anya.Parts.Logo.center();
         Anya.Parts.Main.center();
 
-        if (Anya.DEF.NoLoad === true) {
-            Anya.Parts.Main.show();
-            return;
+        if (me.GetSearchPage() != null) {
+            Anya.DEF.NoLoad = true;
         }
 
-        Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed * 3, function() {
-            Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
-                Anya.Parts.Logo.hide();
+        if (Anya.DEF.NoLoad === true) {
+            Anya.Parts.Main.show();
+        } else {
+            Anya.Parts.Logo.fadeIn(Anya.Parts.FadeSpeed * 3, function() {
+                Anya.Parts.Main.fadeIn(Anya.Parts.FadeSpeed, function() {
+                    Anya.Parts.Logo.hide();
+                });
             });
-        });
+        }
+
+        me.PageByURI();
     };
 
     me.GenericTransition = function(oldElement, newElement) {
@@ -191,10 +253,14 @@ Anya.Load = function() {
     me.Page = function(pageid) {
         var curPage = Anya.Parts.Pages[currentPage];
         var newPage = Anya.Parts.Pages[pageid];
+
         me.GenericTransition(curPage, newPage);
         curPage.Unload();
         newPage.Load();
         currentPage = pageid;
+
+        history.pushState(null, null, URI(window.location).removeSearch('page')
+            .addSearch('page', currentPage));
     };
 
     return me;
@@ -206,12 +272,10 @@ Anya.Main = function() {
     $(function() {
         Anya.Load.StartSite();
 
-        Anya.Parts.PageLinks.about.click(function() {
-            Anya.Load.Page("about");
-        });
-
-        Anya.Parts.PageLinks.home.click(function() {
-            Anya.Load.Page("slideshow");
+        Object.keys(Anya.Parts.PageLinks).forEach(function(element) {
+            Anya.Parts.PageLinks[element].click(function() {
+                Anya.Load.Page(element);
+            });
         });
 
         /* Show / hide shows list if CSS transitions are supported well */
@@ -224,8 +288,6 @@ Anya.Main = function() {
                 Anya.Parts.Pages.slideshow.showsList.addClass("hidden");
             });
         }
-
-        Anya.Load.Page("slideshow");
     });
 
     return me;
