@@ -127,6 +127,10 @@ Anya.Parts = function() {
             var topLine = $(".top", me.Pages.music);
             var botLine = $(".bottom", me.Pages.music);
 
+            $('.album', me.Pages.music).each(function(i, albumLink) {
+                $(albumLink).off();
+            });
+
             topLine.delay(Anya.Parts.FadeSpeed).css('top', '');
             botLine.delay(Anya.Parts.FadeSpeed).css('bottom', '');
         };
