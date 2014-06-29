@@ -3,7 +3,7 @@
 
 @page-width: @column-width * 30;
 @page-height: @column-width * 20;
-@img-version: "2";
+@img-version: "3";
 
 .slideshow-classes() {
   .slideshow {
@@ -38,7 +38,7 @@
     #slideshow {
       overflow: hidden;
 
-      .image1, .image2, .image3, .image4 {
+      .image1, .image2, .image3, .image4, .image5, .image6 {
         position: relative;
         height: @page-height;
         width: @page-width;
@@ -55,6 +55,12 @@
       }
       .image4 {
         background: url("../img/slides/4.jpg?v=@{img-version}");
+      }
+      .image5 {
+        background: url("../img/slides/5.jpg?v=@{img-version}");
+      }
+      .image6 {
+        background: url("../img/slides/6.jpg?v=@{img-version}");
       }
 
       #shows-list {

@@ -66,12 +66,10 @@ Anya.Parts = function() {
             var img1 = $(".image1", me.Pages.slideshow);
             var img2 = $(".image2", me.Pages.slideshow);
             var img3 = $(".image3", me.Pages.slideshow);
-            var img4 = $(".image4", me.Pages.slideshow);
 
             Anya.ScrollNav.Add(img1);
             Anya.ScrollNav.Add(img2);
             Anya.ScrollNav.Add(img3);
-            Anya.ScrollNav.Add(img4);
             Anya.ScrollNav.Start();
         };
 
